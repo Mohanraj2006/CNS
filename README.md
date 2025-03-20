@@ -1,5 +1,5 @@
 ## EX. NO: 1(A) : IMPLEMENTATION OF CAESAR CIPHER
- 
+## Register Number:212223040114
 
 ## AIM:
 
@@ -28,7 +28,64 @@ becomes C. To change a message back, each letter is replaced by the one three be
 
 
 PROGRAM :-
+```
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 
+void main() {
+    char plain[100], cipher[100];
+    int key, i, length;
+    
+    printf("\nEnter the plain text: ");
+    scanf("%[^\n]%*c", plain); 
+    printf("\nEnter the key value: ");
+    scanf("%d", &key);
+
+    length = strlen(plain);
+    printf("\nPLAIN TEXT: %s", plain);
+    printf("\nENCRYPTED TEXT: ");
+    
+    for (i = 0; i < length; i++) {
+        if (isalpha(plain[i])) 
+        {   
+            cipher[i] = plain[i] + key;
+
+            if (isupper(plain[i]) && cipher[i] > 'Z')
+                cipher[i] = cipher[i] - 26;
+            if (islower(plain[i]) && cipher[i] > 'z')
+                cipher[i] = cipher[i] - 26;
+        } else {
+            cipher[i] = plain[i];  
+        }
+        
+        printf("%c", cipher[i]);
+    }
+
+    printf("\n\nAFTER DECRYPTION: ");
+    for (i = 0; i < length; i++) {
+        if (isalpha(cipher[i])) { 
+            plain[i] = cipher[i] - key;
+            if (isupper(cipher[i]) && plain[i] < 'A')
+                plain[i] = plain[i] + 26;
+
+            if (islower(cipher[i]) && plain[i] < 'a')
+                plain[i] = plain[i] + 26;
+        } else {
+            plain[i] = cipher[i];
+        }
+
+        printf("%c", plain[i]);
+    }
+
+    printf("\n");
+}
+```
 
 
 OUTPUT :-
+
+![Screenshot 2025-03-20 092216](https://github.com/user-attachments/assets/f2d14dcf-9e8a-42dc-81e8-202c3b5b83b1)
+
+## RESULT :-
+THE PROGRAM IS EXECUTED SUCCESSFULLY.
